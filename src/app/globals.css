@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Tailwind v4 다크모드 인식 설정 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html, body {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  /* 특정 배경색을 고정하지 않고 상속받도록 설정 */
+}
+
+/* --- 1. 공통 컨텐츠 스타일 (다크모드 대응) --- */
+.prose-custom {
+  line-height: 1.8;
+  color: inherit; /* 부모(body)의 글자색을 따라감 */
+}
+
+/* 제목 색상들이 다크모드에서 바뀌도록 설정 */
+.prose-custom h1 { font-size: 2.5rem; font-weight: 900; margin-top: 3rem; margin-bottom: 1.5rem; color: #111827; }
+.dark .prose-custom h1 { color: #f8fafc; }
+
+.prose-custom h2 { 
+  font-size: 1.875rem; font-weight: 800; margin-top: 4rem; margin-bottom: 1.25rem; 
+  padding-bottom: 0.75rem; border-bottom: 1px solid #f3f4f6; color: #1f2937; 
+}
+.dark .prose-custom h2 { color: #e2e8f0; border-bottom-color: #1e293b; }
+
+.prose-custom h3 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #1f2937; }
+.dark .prose-custom h3 { color: #e2e8f0; }
+
+/* --- 2. 에디터 및 이미지 스타일 (기존 로직 유지) --- */
+.ql-editor img, .content-view img {
+  display: inline-block !important;
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  border-radius: 1rem;
+}
+
+/* 중앙 정렬 */
+.ql-editor img[style*="display: block; margin: auto;"],
+.content-view img[style*="display: block; margin: auto;"] {
+  display: block !important;
+  float: none !important;
+  margin: 2rem auto !important;
+}
+
+.content-view { display: block !important; width: 100%; }
+.content-view p { display: block; overflow: visible; white-space: pre-wrap; }
+.content-view img { cursor: zoom-in; transition: transform 0.2s ease; }
+.content-view img:hover { transform: scale(1.01); }
